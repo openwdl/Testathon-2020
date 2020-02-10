@@ -12,7 +12,7 @@ Platform requirements:
 | docker | (i) e.g. `apt-get install docker.io`, (ii) [empower user to control it](https://docs.docker.com/install/linux/linux-postinstall/) | set up [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) |
 | Java 8+ | e.g. `apt-get install default-jre-headless` | if needed, run `java` in Terminal to trigger installation flow |
 
-Common steps:
+Booting up:
 
 0. *(if desired)* create & enter a python virtualenv
 1. [Fork this GitHub repository](https://github.com/openwdl/Testathon-2020)
@@ -46,8 +46,14 @@ We've seeded four broad categories of test cases in this repository:
 * `tests/task`: task-level runner functionality
 * `tests/workflow`: workflow-level runner functionality
 
-These categories roughly indicate the intended focus of the cases within, but by no means are mutually exclusive (for example, it can be useful to use a `scatter{}` workflow to iterate more-basic functionality tests on varying inputs & configurations). More categories might well be needed, such as for structs and imports perhaps.
+These categories roughly indicate the intended focus of the cases within, but by no means are mutually exclusive (for example, a `scatter{}` workflow can be useful to iterate more-basic tests on varying inputs & configurations). More categories might well be needed, such as for structs and imports perhaps.
 
 Each folder within these categories provides a [pytest-wdl](https://github.com/EliLillyCo/pytest-wdl) test case, including a .wdl file, a short Python file describing how to invoke it and its expected outputs (with the `workflow_runner` fixture), and optionally a `test-data.json` file describing any needed data assets (with the `workflow_data` fixture). The [pytest-wdl manual](https://pytest-wdl.readthedocs.io/en/stable/index.html) has full detail on these fixtures.
 
+## Adding tests
+
 New tests can be added by copying an existing test case directory alongside, and renaming+rewriting the files within as needed. Pytest automatically discovers all `test_*.py` files in the directory tree.
+
+Documentation: at minimum, each Python file should include a docstring describing the focus.
+
+Send pull requests with new test cases upstream via GitHub. And sync up with the latest from time to time, `git fetch upstream && git merge upstream/master` ([rebase](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) if you dare).
