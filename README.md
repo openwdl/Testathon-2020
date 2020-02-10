@@ -8,9 +8,9 @@ Platform requirements:
 
 | | Linux | macOS |
 | - | ----- | ----- |
-| python3 & pip3 | e.g. `apt-get install python3 python3-pip` | install from [Homebrew](https://formulae.brew.sh/formula/python) (Catalina Python3.framework may work but see [pitfall](https://stackoverflow.com/questions/57630314/ssl-certificate-verify-failed-error-with-python3-on-macos-10-15)) |
+| Python 3.6+ & pip | e.g. `apt-get install python3 python3-pip` | install from [Homebrew](https://formulae.brew.sh/formula/python) (`Python3.framework` may work, with [caveat](https://stackoverflow.com/questions/57630314/ssl-certificate-verify-failed-error-with-python3-on-macos-10-15)) |
 | docker | (i) e.g. `apt-get install docker.io`, (ii) [empower user to control it](https://docs.docker.com/install/linux/linux-postinstall/) | set up [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) |
-| Java 8+ | e.g. `apt-get install default-jre-headless` | if needed, run `java` in Terminal to trigger installation flow |
+| Java 8+ | e.g. `apt-get install default-jre-headless` | run `java` in Terminal to trigger dialog (alternative: [AdoptOpenJDK](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)) |
 
 Booting up:
 
@@ -46,9 +46,15 @@ We've seeded four broad categories of test cases in this repository:
 * `tests/task`: task-level runner functionality
 * `tests/workflow`: workflow-level runner functionality
 
-These categories roughly indicate the intended focus of the cases within, but by no means are mutually exclusive (for example, a `scatter{}` workflow can be useful to iterate more-basic tests on varying inputs & configurations). More categories might well be needed, such as for structs and imports perhaps.
+These categories reflect the intended focus within, but aren't mutually exclusive (for example, a `scatter{}` workflow can be useful to iterate more-basic tests on varying inputs). More categories might be needed, such as for structs and imports.
 
-Each folder within these categories provides a [pytest-wdl](https://github.com/EliLillyCo/pytest-wdl) test case, including a .wdl file, a short Python file describing how to invoke it and its expected outputs (with the `workflow_runner` fixture), and optionally a `test-data.json` file describing any needed data assets (with the `workflow_data` fixture). The [pytest-wdl manual](https://pytest-wdl.readthedocs.io/en/stable/index.html) has full detail on these fixtures.
+Each folder within these categories provides a [pytest-wdl](https://github.com/EliLillyCo/pytest-wdl) test case including,
+
+* .wdl file
+* short Python file describing how to invoke the workflow and its expected outputs (with the `workflow_runner` fixture)
+* optionally, a `test-data.json` file describing any needed data assets (with the `workflow_data` fixture)
+
+The [pytest-wdl manual](https://pytest-wdl.readthedocs.io/en/stable/index.html) has full detail on these fixtures.
 
 ## Adding tests
 
