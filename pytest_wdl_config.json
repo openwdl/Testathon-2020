@@ -1,0 +1,12 @@
+{
+  "#COMMENT": "place a copy of this file in your $HOME directory and set java_bin and cromwell_jar_file appropriately",
+  "cache_dir": "/tmp/wdl_cache",
+  "default_executors": ["cromwell"],
+  "executors": {
+    "cromwell": {
+      "java_bin": "/usr/bin/java",
+      "java_args": "-Xmx8g",
+      "cromwell_jar_file": "/path/to/cromwell-48.jar"
+    }
+  }
+}
