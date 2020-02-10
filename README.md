@@ -16,9 +16,12 @@ Common steps:
 
 0. *(if desired)* create & enter a python virtualenv
 1. [Fork this GitHub repository](https://github.com/openwdl/Testathon-2020)
-2. Clone your fork to working directory: `git clone git@github.com:GITHUB_USERNAME/Testathon-2020.git && cd Testathon-2020`
-3. Add upstream for later use: `git remote add upstream https://github.com/openwdl/Testathon-2020.git`
-4. Install [pytest-wdl](https://pypi.org/project/pytest-wdl/) and any other dependencies: `pip3 install --user -r requirements.txt`
+2. Clone your fork to working directory: 
+```git clone git@github.com:GITHUB_USERNAME/Testathon-2020.git && cd Testathon-2020```
+3. Add upstream for later use:
+```git remote add upstream https://github.com/openwdl/Testathon-2020.git```
+4. Install [pytest-wdl](https://pypi.org/project/pytest-wdl/) and any other dependencies:
+```pip3 install --user -r requirements.txt```
 5. Download [Cromwell JAR](https://github.com/broadinstitute/cromwell/releases/download/48/cromwell-48.jar) to some known location
 6. `cp pytest_wdl_config.json $HOME` and edit the copy so that `cromwell_jar_file` has the correct location
 
