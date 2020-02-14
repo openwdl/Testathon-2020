@@ -37,6 +37,12 @@ Once comfortable, run tests in parallel to reduce total time:
 pytest -n 10 -v .
 ```
 
+Or run just one test:
+
+```
+pytest tests/expr/optional_interpolation
+```
+
 ## Test suite structure
 
 We've seeded four broad categories of test cases in this repository:
