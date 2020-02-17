@@ -1,29 +1,30 @@
 # [OpenWDL Testathon, Feb 18-19, 2020](https://support.terra.bio/hc/en-us/articles/360039208432-Announcing-the-OpenWDL-Testathon-Feb-18-19-2020)
 
-This repo includes a [pytest-wdl](https://github.com/EliLillyCo/pytest-wdl) skeleton for developing test cases for the WDL language specification. While this is suggested as a "shovel-ready" starting point for participants, other testing frameworks and approaches are equally welcomed, as one of the Testathon's goals is to develop general best practices for WDL testing.
+This repo includes a [pytest-workflow](https://github.com/LUMC/pytest-workflow) 
+skeleton for developing test cases for the WDL language specification. While 
+this is suggested as a "shovel-ready" starting point for participants, other 
+testing frameworks and approaches are equally welcomed, as one of the 
+Testathon's goals is to develop general best practices for WDL testing.
 
 ## Getting Started
 
 Platform requirements:
 
 | | Linux | macOS |
-| - | ----- | ----- |
-| Python 3.6+ & pip | e.g. `apt-get install python3 python3-pip` | install from [Homebrew](https://formulae.brew.sh/formula/python) (`Python3.framework` may work, with [caveat](https://stackoverflow.com/questions/57630314/ssl-certificate-verify-failed-error-with-python3-on-macos-10-15)) |
+| --- | ----- | ----- |
+| miniconda | [Linux install instructions](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html)| [Mac OS install instructions](https://conda.io/projects/conda/en/latest/user-guide/install/macos.html) |
 | docker | (i) e.g. `apt-get install docker.io`, (ii) [empower user to control it](https://docs.docker.com/install/linux/linux-postinstall/) | set up [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) |
-| Java 8+ | e.g. `apt-get install default-jre-headless` | run `java` in Terminal to trigger dialog (alternative: [AdoptOpenJDK](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)) |
+
 
 Booting up:
 
-0. *(if desired)* create & enter a python virtualenv
 1. [Fork this GitHub repository](https://github.com/openwdl/Testathon-2020)
 2. Clone your fork to working directory: 
 ```git clone git@github.com:GITHUB_USERNAME/Testathon-2020.git && cd Testathon-2020```
 3. Add upstream for later use:
 ```git remote add upstream https://github.com/openwdl/Testathon-2020.git```
-4. Install [pytest-wdl](https://pypi.org/project/pytest-wdl/) and any other dependencies:
-```pip3 install --user -r requirements.txt```
-5. Download [Cromwell JAR](https://github.com/broadinstitute/cromwell/releases/download/48/cromwell-48.jar) to some known location
-6. `cp pytest_wdl_config.json $HOME` and edit the copy so that `cromwell_jar_file` has the correct location
+4. Install dependencies using `conda env create -f environment.yml`
+5. Activate the conda environment with `conda activate testathon2020`
 
 ## Invoking test suite
 
@@ -34,7 +35,7 @@ pytest .
 Once comfortable, run tests in parallel to reduce total time:
 
 ```
-pytest -n 10 -v .
+pytest --wt 10 -v .
 ```
 
 Or run just one test:
