@@ -44,6 +44,10 @@ Or run just one test:
 pytest tests/expr/optional_interpolation
 ```
 
+All cromwell and miniwdl tests are tagged with `cromwell` and `miniwdl` 
+respectively. To test only cromwell test use `pytest --tag cromwell` and to
+only test miniwdl use `pytest --tag miniwdl`.
+
 ## Test suite structure
 
 We've seeded four broad categories of test cases in this repository:

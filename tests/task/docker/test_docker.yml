@@ -1,3 +1,5 @@
+# docker controls the container image in which the command runs
+
 - name: docker_cromwell
   tags:
     - cromwell
