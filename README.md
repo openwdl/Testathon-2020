@@ -53,20 +53,32 @@ We've seeded four broad categories of test cases in this repository:
 * `tests/task`: task-level runner functionality
 * `tests/workflow`: workflow-level runner functionality
 
-These categories reflect the intended focus within, but aren't mutually exclusive (for example, a `scatter{}` workflow can be useful to iterate more-basic tests on varying inputs). More categories might be needed, such as for structs and imports.
+These categories reflect the intended focus within, but aren't mutually 
+exclusive (for example, a `scatter{}` workflow can be useful to iterate 
+more-basic tests on varying inputs). More categories might be needed, such as 
+for structs and imports.
 
-Each folder within these categories provides a [pytest-wdl](https://github.com/EliLillyCo/pytest-wdl) test case including,
+Each folder within these categories provides a [pytest-workflow](
+https://github.com/LUMC/pytest-workflow) test case including,
 
 * .wdl file
-* short Python file describing how to invoke the workflow and its expected outputs (with the `workflow_runner` fixture)
-* optionally, a `test-data.json` file describing any needed data assets (with the `workflow_data` fixture)
+* YAML file describing the test
+* Optionally, JSON input files to be used by Cromwell and Miniwdl.
+* Optionally, a python file, for tests that can not be covered by the YAML
+  file.
 
-The [pytest-wdl manual](https://pytest-wdl.readthedocs.io/en/stable/index.html) has full detail on these fixtures.
+The [pytest-workflow manual](https://pytest-workflow.readthedocs.io/) has full 
+details on the use of pytest-workflow for testing.
 
 ## Adding tests
 
-New tests can be added by copying an existing test case directory alongside, and renaming+rewriting the files within as needed. Pytest automatically discovers all `test_*.py` files in the directory tree.
+New tests can be added by copying an existing test case directory alongside, 
+and renaming+rewriting the files within as needed. Pytest automatically 
+discovers all `test_*.yml` and `test_*.py` files in the directory tree.
 
-Documentation: at minimum, each Python file should include a docstring describing the focus.
+Documentation: at minimum, each YAML file should include a comment describing 
+the focus.
 
-Send pull requests with new test cases upstream via GitHub. And sync up with the latest from time to time, `git fetch upstream && git merge upstream/master` ([rebase](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) if you dare).
+Send pull requests with new test cases upstream via GitHub. And sync up with 
+the latest from time to time, `git fetch upstream && git merge upstream/master` 
+([rebase](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) if you dare).
