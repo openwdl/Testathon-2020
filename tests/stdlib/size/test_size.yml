@@ -1,0 +1,45 @@
+# The size() function can be invoked in a few different ways
+# The expected sizes can be generated with python in the following way.
+# Keep in mind that python may represent floating numbers differently than
+# cromwell or miniwdl.
+# divisors = [1] + [2**10]*4 + [2**20]*4 + [2**30]*4 + [2**40]*4
+# TODO: should the unit divisors be the following? spec clarification needed
+# """
+#        [
+#    1,
+#    10**3, 10**3, 2**10, 2*10,
+#    10**6, 10**6, 2**20, 2**20,
+#    10**9, 10**9, 2**30, 2**30,
+#    10**12, 10**12, 2**40, 2**40,
+# ]
+# """
+# expected = {
+#    "size_f0": 0.0,
+#    "size_f1": 10.0,
+#    "size_all": 30.0,
+#    "size_u0": [0.0]*17,
+#    "size_u1": [10.0/d for d in divisors],
+#    "size_uall": [30.0/d for d in divisors],
+# }
+
+- name: size_test_cromwell
+  tags:
+    - cromwell
+  command: cromwell run tests/stdlib/size/test_size.wdl
+  # Use a yaml anchor here to avoid repetition.
+  stdout: &size-stdout
+    contains:
+      - '"test_size.size_f0": 0.0'
+      - '"test_size.size_f1": 10.0'
+      - '"test_size.size_all": 30.0'
+      - '"test_size.size_u0": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]'
+      # NOTE: Below tests may not work properly because floating points are hellish to test.
+      - '"test_size.size_u1": [10.0, 0.009765625, 0.009765625, 0.009765625, 0.009765625, 0.0000095367431640625, 0.0000095367431640625, 0.0000095367431640625, 0.0000095367431640625, 9.313225746154785E-9, 9.313225746154785E-9, 9.313225746154785E-9, 9.313225746154785E-9, 9.094947017729282E-12, 9.094947017729282E-12, 9.094947017729282E-12, 9.094947017729282E-12]'
+      - '"test_size.size_uall": [30.0, 0.029296875, 0.029296875, 0.029296875, 0.029296875, 0.0000286102294921875, 0.0000286102294921875, 0.0000286102294921875, 0.0000286102294921875, 2.7939677238464355E-8, 2.7939677238464355E-8, 2.7939677238464355E-8, 2.7939677238464355E-8, 2.7284841053187847E-11, 2.7284841053187847E-11, 2.7284841053187847E-11, 2.7284841053187847E-11]'
+
+# Fails due to a bug in miniwdl
+#- name: size_test_miniwdl
+#  tags:
+#    - miniwdl
+#  command: miniwdl run tests/stdlib/size/test_size.wdl
+#  stdout: *size-stdout
