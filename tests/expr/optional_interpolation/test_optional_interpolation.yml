@@ -1,0 +1,39 @@
+- name: optional_interpolation_defined_input_cromwell
+  tags:
+    - cromwell
+  command: >-
+    cromwell run -i tests/expr/optional_interpolation/defined_input.json
+    tests/expr/optional_interpolation/test_optional_interpolation.wdl
+  stdout:
+    contains:
+      - '"test_optional_interpolation_tf.out": "hello world"'
+
+- name: optional_interpolation_undefined_input_cromwell
+  tags:
+    - cromwell
+  command: >-
+    cromwell run -i tests/expr/optional_interpolation/undefined_input.json
+    tests/expr/optional_interpolation/test_optional_interpolation.wdl
+  stdout:
+    contains:
+      - '"test_optional_interpolation_tf.out": ""'
+
+- name: optional_interpolation_defined_input_miniwdl
+  tags:
+    - miniwdl
+  command: >-
+    miniwdl run -i tests/expr/optional_interpolation/defined_input.json
+    tests/expr/optional_interpolation/test_optional_interpolation.wdl
+  stdout:
+    contains:
+      - '"test_optional_interpolation_tf.out": "hello world"'
+
+- name: optional_interpolation_undefined_input_miniwdl
+  tags:
+    - miniwdl
+  command: >-
+    miniwdl run -i tests/expr/optional_interpolation/undefined_input.json
+    tests/expr/optional_interpolation/test_optional_interpolation.wdl
+  stdout:
+    contains:
+      - '"test_optional_interpolation_tf.out": ""'
