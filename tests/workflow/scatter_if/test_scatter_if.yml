@@ -1,3 +1,5 @@
+# if section nested within a scatter section
+
 - name: scatter_if_cromwell
   tags:
     - cromwell
