@@ -1,3 +1,7 @@
+# Special behavior of string concatenation (+) within task command interpolations:
+# If either operand is None, then the whole concatenation evaluates to None; and interpolation of
+# None yields the empty string. This facilitates formulation of command-line flags.v
+
 - name: optional_interpolation_defined_input_cromwell
   tags:
     - cromwell
