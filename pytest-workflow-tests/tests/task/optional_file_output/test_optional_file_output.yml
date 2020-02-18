@@ -1,0 +1,29 @@
+# An optional file output may name a file that does not exist in the container, yielding a None
+# output value.
+
+- name: optional_file_output_cromwell
+  tags:
+    - cromwell
+  command: >-
+    cromwell run -o tests/cromwell_options.json
+    tests/task/optional_file_output/test_optional_file_output.wdl
+  files:
+    - path: test-output/file1.txt
+      contains:
+        - "Hello, world!"
+    - path: test-output/file2.txt
+      should_exist: false
+
+- name: optional_file_output_miniwdl
+  tags:
+    - miniwdl
+  command: >-
+    miniwdl run -d test-output/.
+    tests/task/optional_file_output/test_optional_file_output.wdl
+  files:
+    - path: test-output/output_links/file1/file1.txt
+      contains:
+        - "Hello, world!"
+    - path: test-output/output_links/file2/file2.txt
+      should_exist: false
+

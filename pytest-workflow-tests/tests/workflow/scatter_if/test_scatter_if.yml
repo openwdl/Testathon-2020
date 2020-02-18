@@ -1,0 +1,16 @@
+# if section nested within a scatter section
+
+- name: scatter_if_cromwell
+  tags:
+    - cromwell
+  command: cromwell run tests/workflow/scatter_if/test_scatter_if.wdl
+  stdout:
+    contains:
+      - '"scatter_if.i_even": [0, 2, 4, 6, 8]'
+
+- name: scatter_if_miniwdl
+  tags:
+    - miniwdl
+  command: miniwdl run tests/workflow/scatter_if/test_scatter_if.wdl
+  # Output tested using python, because miniwdl does not output array on a
+  # single line.
