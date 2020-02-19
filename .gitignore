@@ -3,5 +3,9 @@ __pycache__
 # cromwell jar files
 *.jar
 
+
+# Cromwell executions
+cromwell-executions
+
 # python virtual environment
 env/
